@@ -260,8 +260,6 @@ uvicorn app.main:app --reload --port 8000
 Open:
 
 - App: http://localhost:8000
-- API docs: http://localhost:8000/docs
-- Team comparison: http://localhost:8000/improvements
 
 ## Docker
 
