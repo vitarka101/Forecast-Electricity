@@ -1,0 +1,20 @@
+[project]
+name = "electricity-forecasting"
+version = "0.1.0"
+description = "Brocode electricity forecasting — Columbia University"
+requires-python = ">=3.9"
+dependencies = [
+    "fastapi==0.115.6",
+    "uvicorn[standard]==0.34.0",
+    "pandas==2.2.3",
+    "numpy==1.26.4",
+    "pyarrow==18.1.0",
+    "httpx==0.28.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]

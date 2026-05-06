@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Forecast Improvement</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>Forecast Improvement</h1>
+        <p>Our routed model output compared with the other team's baseline output.</p>
+      </div>
+      <nav>
+        <a href="/">Chat</a>
+        <a href="/improvements">Improvements</a>
+      </nav>
+    </header>
+
+    <main class="improvements-layout">
+      <section class="panel improvement-hero">
+        <div>
+          <h2 id="comparison-title">Forecast Comparison</h2>
+          <p id="comparison-subtitle" class="muted">Loading model outputs...</p>
+        </div>
+        <div class="lookup-row improvement-selector">
+          <input id="client-id" value="MT_200" />
+          <button id="load-client">Load</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div id="accuracy-banner" class="winner"></div>
+        <div id="comparison-metrics" class="metric-grid"></div>
+        <div id="comparison-chart" class="comparison-chart"></div>
+        <div class="legend-row">
+          <span><i class="legend actual"></i>Actual</span>
+          <span><i class="legend ours"></i>Ours</span>
+          <span><i class="legend other"></i>Other team</span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Evidence</h2>
+        <div class="table-wrap">
+          <table id="evidence-table">
+            <thead>
+              <tr>
+                <th>Team</th>
+                <th>Model</th>
+                <th>Accuracy</th>
+                <th>MAPE</th>
+                <th>RMSE</th>
+                <th>MAE</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/improvements.js"></script>
+  </body>
+</html>

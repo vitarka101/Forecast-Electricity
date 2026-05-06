@@ -1,0 +1,569 @@
+:root {
+  --bg: #f7f8fb;
+  --panel: #ffffff;
+  --ink: #17202a;
+  --muted: #667085;
+  --line: #d8dee8;
+  --accent: #176b87;
+  --accent-dark: #0e4659;
+  --good: #177245;
+  --warn: #9a5b00;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--line);
+  background: #ffffff;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+
+.topbar p {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+}
+
+nav a,
+button {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+nav a {
+  background: #ffffff;
+  color: var(--accent);
+}
+
+button:hover,
+nav a:hover {
+  border-color: var(--accent-dark);
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 18px;
+  padding: 18px;
+  min-height: calc(100vh - 82px);
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.chat-panel {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: calc(100vh - 118px);
+}
+
+.messages {
+  padding: 18px;
+  overflow: auto;
+}
+
+.message {
+  max-width: 980px;
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.message.user {
+  margin-left: auto;
+  background: #eef8fb;
+  border-color: #c7e6ef;
+}
+
+.message.error {
+  border-color: #ffd2d2;
+  background: #fff7f7;
+}
+
+.summary {
+  line-height: 1.5;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.metric {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px;
+  min-height: 76px;
+}
+
+.metric span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.metric strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 18px;
+}
+
+.chart {
+  margin-top: 12px;
+  width: 100%;
+  height: 210px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fbfcfe;
+}
+
+.chat-form,
+.lookup-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+}
+
+.chat-form {
+  padding: 14px;
+  border-top: 1px solid var(--line);
+}
+
+input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.side-panel {
+  padding: 16px;
+  overflow: hidden;
+}
+
+.client-list {
+  display: grid;
+  gap: 8px;
+  max-height: calc(100vh - 205px);
+  overflow: auto;
+  margin-top: 14px;
+}
+
+.client-item {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 9px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.client-item strong {
+  display: block;
+}
+
+.client-item span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.improvements-layout {
+  display: grid;
+  gap: 18px;
+  padding: 18px;
+}
+
+.improvements-layout .panel {
+  padding: 18px;
+}
+
+.winner {
+  margin-bottom: 14px;
+  padding: 12px;
+  border-left: 4px solid var(--good);
+  background: #f2fbf6;
+}
+
+.muted {
+  color: var(--muted);
+  margin-top: 5px;
+}
+
+.improvement-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.improvement-selector {
+  width: min(380px, 100%);
+}
+
+.comparison-chart {
+  margin-top: 14px;
+}
+
+.large-chart {
+  height: 360px;
+}
+
+.legend-row {
+  display: flex;
+  gap: 18px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.legend {
+  display: inline-block;
+  width: 22px;
+  height: 3px;
+  margin-right: 7px;
+  vertical-align: middle;
+}
+
+.legend.actual {
+  background: #17202a;
+}
+
+.legend.ours {
+  background: #177245;
+}
+
+.legend.other {
+  background: #9a5b00;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.change-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+@media (max-width: 900px) {
+  .topbar,
+  .workspace {
+    display: block;
+  }
+
+  nav {
+    margin-top: 14px;
+  }
+
+  .side-panel {
+    margin-top: 18px;
+  }
+
+  .metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ── Tab navigation ─────────────────────────────────────────────────────────── */
+.tab-nav {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.tab-btn {
+  background: #ffffff;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.tab-btn.active {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.nav-link {
+  border: 1px solid var(--line);
+  background: #ffffff;
+  color: var(--muted);
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ── Tab content visibility ─────────────────────────────────────────────────── */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: grid;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* workspace already sets grid for chat tab */
+
+/* ── Example query pills ────────────────────────────────────────────────────── */
+.example-queries {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+
+.eq-label {
+  color: var(--muted);
+}
+
+.pill {
+  background: #f0f6ff;
+  color: var(--accent);
+  border: 1px solid #c7dff0;
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.pill:hover {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+/* ── Dashboard layout ───────────────────────────────────────────────────────── */
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  padding: 18px;
+}
+
+.dashboard-controls {
+  padding: 16px;
+}
+
+.control-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.control-row label {
+  font-size: 14px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.control-row select {
+  flex: 1;
+  max-width: 420px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 14px;
+  background: #fff;
+  color: var(--ink);
+}
+
+/* ── Client badge row ───────────────────────────────────────────────────────── */
+.client-badge {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid var(--line);
+  background: #f0f6ff;
+  color: var(--accent-dark);
+}
+
+.brocode-badge {
+  background: #eaf6f0;
+  border-color: #a8d8be;
+  color: #177245;
+}
+
+.chicken-badge {
+  background: #fff4ec;
+  border-color: #f5c9a0;
+  color: #9a5b00;
+}
+
+/* ── Chart wrapper ──────────────────────────────────────────────────────────── */
+.chart-wrap {
+  margin-top: 12px;
+  width: 100%;
+}
+
+.chart-wrap svg.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── Dual-forecast legend dots ──────────────────────────────────────────────── */
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 20px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.actual-dot  { background: #17202a; opacity: 0.6; }
+.brocode-dot { background: #176b87; }
+.chicken-dot { background: #e07b39; }
+
+/* ── Dashboard section panels ───────────────────────────────────────────────── */
+#dual-chart-section,
+#price-section,
+#implementation-section {
+  padding: 20px;
+}
+
+#dual-chart-section h2,
+#price-section h2,
+#implementation-section h2 {
+  margin-bottom: 6px;
+}
+
+/* ── What We've Implemented grid ────────────────────────────────────────────── */
+.impl-intro {
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+
+.implementation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.impl-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  background: #fbfcfe;
+}
+
+.impl-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  margin: 0 0 8px 0;
+}
+
+.impl-card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Brand header variant ───────────────────────────────────────────────────── */
+.brand h1 {
+  font-size: 22px;
+}
+
+.brand p {
+  margin-top: 3px;
+  font-size: 13px;
+}

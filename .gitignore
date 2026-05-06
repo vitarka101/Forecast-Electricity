@@ -1,0 +1,12 @@
+.env
+__pycache__/
+*.pyc
+.DS_Store
+.cache/
+.pytest_cache/
+.venv/
+LD2011_2014.txt
+artifacts/*.parquet
+artifacts/*.json
+artifacts/*.csv
+!artifacts/.gitkeep

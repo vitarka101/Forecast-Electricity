@@ -1,0 +1,24 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      ARTIFACTS_DIR: /app/artifacts
+      FORECAST_MAP_PATH: /app/artifacts/forecast_map.json
+      CLIENT_PROFILES_PATH: /app/artifacts/client_profiles.csv
+      CLUSTER_PROFILES_PATH: /app/artifacts/cluster_profiles.csv
+      HISTORY_AGGREGATES_PATH: /app/artifacts/history_aggregates.parquet
+      MODEL_COMPARISON_PATH: /app/artifacts/model_comparison.json
+      LLM_PROVIDER: ${LLM_PROVIDER:-heuristic}
+      LLM_MODEL: ${LLM_MODEL:-}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./artifacts:/app/artifacts
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

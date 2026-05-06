@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brocode · Electricity Forecasting</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <h1>Brocode · Electricity Forecasting</h1>
+        <p>Columbia University &middot; 370 Portuguese Clients &middot; Multi-Model Pipeline</p>
+      </div>
+      <nav class="tab-nav">
+        <button class="tab-btn active" data-tab="chat">Chat</button>
+        <button class="tab-btn" data-tab="dashboard">Dashboard</button>
+        <a href="/improvements" class="nav-link">Compare Teams</a>
+      </nav>
+    </header>
+
+    <!-- ── TAB: CHAT ─────────────────────────────────────────── -->
+    <main id="tab-chat" class="tab-content active workspace">
+      <section class="panel chat-panel">
+        <div class="example-queries">
+          <span class="eq-label">Try:</span>
+          <button class="pill" data-query="MT_194 forecast next day">MT_194 next day</button>
+          <button class="pill" data-query="MT_001 forecast next day">MT_001 next day</button>
+          <button class="pill" data-query="Compare MT_001 vs MT_199">Compare MT_001 vs MT_199</button>
+          <button class="pill" data-query="Show cluster 0">Cluster 0 summary</button>
+        </div>
+        <div id="messages" class="messages"></div>
+        <form id="chat-form" class="chat-form">
+          <input
+            id="query"
+            autocomplete="off"
+            placeholder="Ask: MT_194 forecast next day, Compare MT_001 vs MT_050…"
+          />
+          <button type="submit">Send</button>
+        </form>
+      </section>
+
+      <aside class="panel side-panel">
+        <h2>Quick Lookup</h2>
+        <div class="lookup-row">
+          <input id="client-search" placeholder="MT_001" />
+          <button id="lookup-client">Open</button>
+        </div>
+        <div id="client-list" class="client-list"></div>
+      </aside>
+    </main>
+
+    <!-- ── TAB: DASHBOARD ─────────────────────────────────────── -->
+    <main id="tab-dashboard" class="tab-content dashboard-layout">
+
+      <!-- Client selector -->
+      <section class="panel dashboard-controls">
+        <div class="control-row">
+          <label for="client-select">Select Client</label>
+          <select id="client-select"><option value="">Loading clients…</option></select>
+          <button id="load-dashboard">Load Forecast</button>
+        </div>
+        <div id="client-badge" class="client-badge"></div>
+      </section>
+
+      <!-- Dual forecast chart -->
+      <section class="panel hidden" id="dual-chart-section">
+        <h2 id="dual-chart-title">Next-Day Hourly Forecast</h2>
+        <div id="dual-chart" class="chart-wrap"></div>
+        <div class="legend-row">
+          <span class="legend-item"><i class="legend-dot actual-dot"></i>Actual</span>
+          <span class="legend-item"><i class="legend-dot brocode-dot"></i>Brocode (our team)</span>
+          <span class="legend-item"><i class="legend-dot chicken-dot"></i>chicken_dinner (baseline)</span>
+        </div>
+        <div id="dual-metrics" class="metric-grid"></div>
+      </section>
+
+      <!-- Price forecast -->
+      <section class="panel hidden" id="price-section">
+        <h2>Brocode Innovation: Daily Electricity Price Forecast</h2>
+        <p class="muted">Next 7 days &middot; OMIE spot market &middot; EUR/kWh &middot; Prophet model with Fourier seasonality</p>
+        <div id="price-chart" class="chart-wrap"></div>
+      </section>
+
+      <!-- What We've Implemented -->
+      <section class="panel hidden" id="implementation-section">
+        <h2>What We've Implemented</h2>
+        <p class="muted impl-intro">
+          Brocode's end-to-end electricity forecasting pipeline for 370 Portuguese clients
+          (UCI Electricity Load Dataset, 2011–2014). All components are production-ready and fully deployed.
+        </p>
+        <div class="implementation-grid">
+
+          <div class="impl-card">
+            <h3>⚡ K-Means Client Clustering</h3>
+            <p>We clustered all 370 electricity clients into 4 behavioral segments using temporal load
+            features — mean hourly consumption, peak load hour, night/business/weekend load share, and
+            load variability. Cluster assignment is deterministic and powers our entire model routing
+            system.</p>
+          </div>
+
+          <div class="impl-card">
+            <h3>🤖 Multi-Model Comparison</h3>
+            <p>Seven model families evaluated head-to-head for every client: SARIMA, Prophet, LSTM,
+            DeepAR, Temporal Fusion Transformer (TFT), XGBoost, and LightGBM with Optuna
+            hyperparameter tuning. All models trained on strict chronological splits — zero data
+            leakage.</p>
+          </div>
+
+          <div class="impl-card">
+            <h3>🏆 Per-Client Best Model Selection</h3>
+            <p>Every client is assigned its optimal model via MAPE on the held-out December 2014 test
+            set (744 hours). XGBoost-Optuna wins for 335 out of 370 clients (90.5%), with the
+            remainder served by Naïve Lag-24h, XGBoost, or LightGBM depending on load pattern.</p>
+          </div>
+
+          <div class="impl-card">
+            <h3>🌤 Weather Feature Integration</h3>
+            <p>External weather signals — temperature, relative humidity, and wind speed — sourced via
+            the Open-Meteo API for all client regions across Portugal. Features are computed as hourly
+            regressors and included in gradient-boosted models and Prophet, materially improving
+            forecast accuracy for weather-sensitive clients.</p>
+          </div>
+
+          <div class="impl-card">
+            <h3>💶 OMIE Daily Price Forecasting</h3>
+            <p>We forecast daily spot-market electricity prices (EUR/kWh) from the Spanish/Portuguese
+            OMIE exchange using Prophet with Fourier-mode yearly and weekly seasonality. Uncertainty
+            bounds (85 %/115 % envelope) provide operational planning context for energy traders and
+            grid operators — this is the next-7-day chart you see above.</p>
+          </div>
+
+          <div class="impl-card">
+            <h3>📊 Quantile Forecasting with DeepAR</h3>
+            <p>DeepAR (Amazon's autoregressive deep-learning model via GluonTS) provides probabilistic
+            forecasts with P10/P50/P90 quantile outputs for clients with high load volatility.
+            Uncertainty bounds surface alongside the point forecast, enabling risk-aware dispatch
+            decisions and reserve capacity planning.</p>
+          </div>
+
+          <div class="impl-card">
+            <h3>🔀 Cluster-Based Model Routing</h3>
+            <p>A lightweight routing table maps each of 370 clients to their cluster's best model,
+            enabling sub-millisecond forecast retrieval at query time. Model selection is fully
+            auditable via the per-client MAPE leaderboard and routing table exported from the
+            pipeline.</p>
+          </div>
+
+          <div class="impl-card">
+            <h3>📅 Chronological Train/Test Splits</h3>
+            <p>All models use a strict forward-in-time split — approximately 80 % training, 20 %
+            validation, with the final December 2014 month (744 hours) held out as the test set across
+            all clients. This prevents any look-ahead bias and ensures reported accuracy numbers
+            reflect true out-of-sample performance.</p>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <script src="/static/app.js"></script>
+    <script src="/static/dashboard.js"></script>
+  </body>
+</html>

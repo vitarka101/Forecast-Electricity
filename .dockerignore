@@ -1,0 +1,10 @@
+LD2011_2014.txt
+omie_marginal_price.csv
+energy_forecasting.ipynb
+.DS_Store
+.env
+.cache
+.venv
+__pycache__/
+**/__pycache__/
+*.pyc

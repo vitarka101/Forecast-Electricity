@@ -1,0 +1,7 @@
+model,n_clients
+XGBoost,251
+Naive_Blend,54
+Naive_168h,26
+LGB_XGB_Blend,19
+Naive_24h,18
+LightGBM,2
