@@ -26,11 +26,11 @@ The final strategy is a client-aware, cluster-based model-routing system:
 
 Accurate electricity forecasting helps utilities, energy traders, and grid operators:
 
-- balance supply and demand more reliably;
-- reduce over-procurement and under-procurement risk;
-- identify high-error clients that need custom treatment;
-- compare model behavior across customer segments;
-- combine demand forecasts with OMIE prices for future EUR impact analysis.
+- Balance supply and demand more reliably;
+- Reduce over-procurement and under-procurement risk;
+- Identify high-error clients that need custom treatment;
+- Compare model behavior across customer segments;
+- Combine demand forecasts with OMIE prices for future EUR impact analysis.
 
 The dashboard turns the modeling work into an operational interface where non-technical users can inspect client-level forecasts, compare BroCode results with the previous team baseline, and view daily electricity price forecasts.
 
